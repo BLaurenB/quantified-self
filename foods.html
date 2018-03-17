@@ -20,10 +20,12 @@
         <!-- New Food -->
         <div>
           <form id="new-food-form">
-            Food Name: <br>
-            <input type="text" name="food-name" id="food-name-field">
-            Calories: <br>
-            <input type="text" name="calories" id="calories-field">
+            Food Name: <input type="text" name="food-name" id="food-name-field"
+            required oninvalid="this.setCustomValidity('Please enter a food name')"
+            oninput="setCustomValidity('')"><br><br>
+            Calories: <input type="text" name="calories" id="calories-field"
+            required oninvalid="this.setCustomValidity('Please enter a calorie amount')"
+            oninput="setCustomValidity('')"><br><br>
             <input type="submit" value="Add Food">
           </form>
         </div>
