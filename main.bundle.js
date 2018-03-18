@@ -57,19 +57,21 @@
 
 	'use strict';
 
-	// Fetch call to get current API data
-	// parse it
-	// the append the DOM with new rows per element of JSON Hash
-
 	var getFoodList = function getFoodList() {
 	  $('#food-list').html('');
 	  fetch('https://vast-retreat-17218.herokuapp.com/api/v1/foods').then(function (response) {
 	    return response.json();
 	  }).then(function (myJson) {
-	    myJson.reverse().forEach(function (obj) {
-	      $('#food-list').append('\n      <tr>\n        <td>' + obj.name + '</td>\n        <td>' + obj.calories + '</td>\n        <td class="delete-food-button"><img src="./public/assets/gradient-x.png" width="30" height="auto" id=\'' + obj.id + '\'></td>\n      </tr>\n      ');
+	    myJson.sort(orderById).forEach(function (obj) {
+	      $('#food-list').append('\n      <tr class="food-list-item" id=\'' + obj.id + '\'>\n        <td class="food-name-field" id=\'' + obj.id + '\'><p>' + obj.name + '</p></td>\n        <td class="food-calorie-field" id=\'' + obj.id + '\'><p>' + obj.calories + '</p></td>\n        <td class="delete-food-button"><img src="./public/assets/gradient-x.png" width="30" height="auto" id=\'' + obj.id + '\'></td>\n      </tr>\n      ');
 	    });
 	  });
+	};
+
+	var orderById = function orderById(a, b) {
+	  if (a.id < b.id) return -1;
+	  if (a.id > b.id) return 1;
+	  return 0;
 	};
 
 	$('#food-list').on('click', '.delete-food-button', function (event) {
@@ -77,6 +79,18 @@
 	  event.target.parentElement.parentElement.remove();
 	  getMeals(event.target.id);
 	  deleteCall(event.target.id);
+	});
+
+	$('#food-list').on('click', '.food-name-field', function (event) {
+	  var tableCell = $('<td class="food-name-field" id=\'' + event.target.id + '\'><input type="text" name="food-name" value="' + event.target.textContent + '"\n  id="food-name-edit" required ></td>');
+	  $('td#' + event.target.id + '.food-name-field').html(tableCell);
+	  $('#food-list').find('#food-name-edit').focus();
+	  $('#food-name-edit').on('focusout', function (exitEvent) {
+	    var name = $('#food-name-edit').val();
+	    var foodInfo = { food: { name: name } };
+	    updateExistingFood(foodInfo, exitEvent.target.parentElement.id);
+	    exitEvent.stopImmediatePropagation();
+	  });
 	});
 
 	function deleteCall(id) {
@@ -121,6 +135,18 @@
 	  fetch("https://vast-retreat-17218.herokuapp.com/api/v1/foods", postConfig(foodInfo)).then(processResponse).then(getFoodList).catch(errorLog);
 	};
 
+	var updateExistingFood = function updateExistingFood(foodInfo, foodId) {
+	  fetch('https://vast-retreat-17218.herokuapp.com/api/v1/foods/' + foodId, updateConfig(foodInfo)).then(processResponse).then(getFoodList).catch(errorLog);
+	};
+
+	var updateConfig = function updateConfig(foodInfo) {
+	  return {
+	    method: 'PATCH',
+	    headers: { 'Content-Type': 'application/json' },
+	    body: JSON.stringify(foodInfo)
+	  };
+	};
+
 	var postConfig = function postConfig(foodInfo) {
 	  return {
 	    method: 'POST',
@@ -128,6 +154,43 @@
 	    body: JSON.stringify(foodInfo)
 	  };
 	};
+
+	var searchFunction = function searchFunction(event) {
+
+	  // let input = $('#food-filter').val()
+	  // let listItems = $("tr")
+	  // let category = document.querySelector('.mw-category');
+	  // let links = category.querySelectorAll('a')
+	  // let links = Array.from(document.querySelectorAll(".mw-category a"));
+	  // let de = links
+	  //               .map(link => link.textContent)
+	  //               .filter(streetName => streetName.includes('de'));
+
+
+	  // listItems.forEach(function)
+	  // for (i = 0; i < list.length; i++) {
+	  //   p = listItems[i].getElementsByTagName("p")[0]
+	  //   if (p.innerHTML.toUpperCase().indexOf(input > -1)) {
+	  //     listItems[i].style.display = ""
+	  //   } else {
+	  //     listItems[i].style.display = "none"
+	  //   }
+	  //   }
+	};
+
+	$('#food-filter').on('keyup', function (event) {
+	  var input = event.currentTarget.value.toUpperCase();
+	  var i = input.length;
+	  var listItems = Array.from($("#food-list").find("tr"));
+
+	  listItems.forEach(function (item) {
+	    if (item.firstElementChild.textContent.toUpperCase().substr(0, i) != input) {
+	      item.style.display = 'none';
+	    } else {
+	      item.style.display = '';
+	    }
+	  });
+	});
 
 	var processResponse = function processResponse(response) {
 	  return response.json().then(function (json) {
