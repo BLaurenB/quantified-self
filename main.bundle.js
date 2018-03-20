@@ -47,6 +47,7 @@
 	"use strict";
 
 	var foods = __webpack_require__(1);
+	var meals = __webpack_require__(2);
 	// var deleteStuff = require("./crud/delete")
 
 	// import deleteStuff from 'path'
@@ -57,19 +58,21 @@
 
 	'use strict';
 
-	// Fetch call to get current API data
-	// parse it
-	// the append the DOM with new rows per element of JSON Hash
-
 	var getFoodList = function getFoodList() {
 	  $('#food-list').html('');
 	  fetch('https://vast-retreat-17218.herokuapp.com/api/v1/foods').then(function (response) {
 	    return response.json();
 	  }).then(function (myJson) {
-	    myJson.reverse().forEach(function (obj) {
-	      $('#food-list').append('\n      <tr>\n        <td>' + obj.name + '</td>\n        <td>' + obj.calories + '</td>\n        <td class="delete-food-button"><img src="./public/assets/gradient-x.png" width="30" height="auto" id=\'' + obj.id + '\'></td>\n      </tr>\n      ');
+	    myJson.sort(orderById).forEach(function (obj) {
+	      $('#food-list').append('\n      <tr class="food-list-item" id=\'' + obj.id + '\'>\n        <td class="food-name-field" id=\'' + obj.id + '\'><p>' + obj.name + '</p></td>\n        <td class="food-calorie-field" id=\'' + obj.id + '\'><p>' + obj.calories + '</p></td>\n        <td class="delete-food-button"><img src="./public/assets/gradient-x.png" width="30" height="auto" id=\'' + obj.id + '\'></td>\n      </tr>\n      ');
 	    });
 	  });
+	};
+
+	var orderById = function orderById(a, b) {
+	  if (a.id < b.id) return -1;
+	  if (a.id > b.id) return 1;
+	  return 0;
 	};
 
 	$('#food-list').on('click', '.delete-food-button', function (event) {
@@ -77,6 +80,30 @@
 	  event.target.parentElement.parentElement.remove();
 	  getMeals(event.target.id);
 	  deleteCall(event.target.id);
+	});
+
+	$('#food-list').on('click', '.food-name-field', function (event) {
+	  var tableCell = $('<td class="food-name-field" id=\'' + event.currentTarget.id + '\'><input type="text" name="food-name" value="' + event.target.textContent + '"\n  id="food-name-edit" required ></td>');
+	  $('td#' + event.currentTarget.id + '.food-name-field').html(tableCell);
+	  $('#food-list').find('#food-name-edit').focus();
+	  $('#food-name-edit').on('focusout', function (exitEvent) {
+	    var name = $('#food-name-edit').val();
+	    var foodInfo = { food: { name: name } };
+	    updateExistingFood(foodInfo, exitEvent.target.parentElement.id);
+	    exitEvent.stopImmediatePropagation();
+	  });
+	});
+
+	$('#food-list').on('click', '.food-calorie-field', function (event) {
+	  var tableCell = $('<td class=\'.food-calorie-field\' id=\'' + event.currentTarget.id + '\'><input type="text" name="food-calorie" value="' + event.target.textContent + '"\n  id="food-calorie-edit" required ></td>');
+	  $('td#' + event.currentTarget.id + '.food-calorie-field').html(tableCell);
+	  $('#food-list').find('#food-calorie-edit').focus();
+	  $('#food-calorie-edit').on('focusout', function (exitEvent) {
+	    var calories = $('#food-calorie-edit').val();
+	    var foodInfo = { food: { calories: calories } };
+	    updateExistingFood(foodInfo, exitEvent.target.parentElement.id);
+	    exitEvent.stopImmediatePropagation();
+	  });
 	});
 
 	function deleteCall(id) {
@@ -121,6 +148,18 @@
 	  fetch("https://vast-retreat-17218.herokuapp.com/api/v1/foods", postConfig(foodInfo)).then(processResponse).then(getFoodList).catch(errorLog);
 	};
 
+	var updateExistingFood = function updateExistingFood(foodInfo, foodId) {
+	  fetch('https://vast-retreat-17218.herokuapp.com/api/v1/foods/' + foodId, updateConfig(foodInfo)).then(processResponse).then(getFoodList).catch(errorLog);
+	};
+
+	var updateConfig = function updateConfig(foodInfo) {
+	  return {
+	    method: 'PATCH',
+	    headers: { 'Content-Type': 'application/json' },
+	    body: JSON.stringify(foodInfo)
+	  };
+	};
+
 	var postConfig = function postConfig(foodInfo) {
 	  return {
 	    method: 'POST',
@@ -128,6 +167,43 @@
 	    body: JSON.stringify(foodInfo)
 	  };
 	};
+
+	var searchFunction = function searchFunction(event) {
+
+	  // let input = $('#food-filter').val()
+	  // let listItems = $("tr")
+	  // let category = document.querySelector('.mw-category');
+	  // let links = category.querySelectorAll('a')
+	  // let links = Array.from(document.querySelectorAll(".mw-category a"));
+	  // let de = links
+	  //               .map(link => link.textContent)
+	  //               .filter(streetName => streetName.includes('de'));
+
+
+	  // listItems.forEach(function)
+	  // for (i = 0; i < list.length; i++) {
+	  //   p = listItems[i].getElementsByTagName("p")[0]
+	  //   if (p.innerHTML.toUpperCase().indexOf(input > -1)) {
+	  //     listItems[i].style.display = ""
+	  //   } else {
+	  //     listItems[i].style.display = "none"
+	  //   }
+	  //   }
+	};
+
+	$('#food-filter').on('keyup', function (event) {
+	  var input = event.currentTarget.value.toUpperCase();
+	  var i = input.length;
+	  var listItems = Array.from($("#food-list").find("tr"));
+
+	  listItems.forEach(function (item) {
+	    if (item.firstElementChild.textContent.toUpperCase().substr(0, i) != input) {
+	      item.style.display = 'none';
+	    } else {
+	      item.style.display = '';
+	    }
+	  });
+	});
 
 	var processResponse = function processResponse(response) {
 	  return response.json().then(function (json) {
@@ -147,6 +223,99 @@
 	  console.error({ error: error });
 	};
 
+	getFoodList();
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports) {
+
+	'use strict';
+
+	var totalCalCount = 0;
+	var remainingCals = void 0;
+	var remainingDailyCals = void 0;
+
+	var findFoodFromMeals = function findFoodFromMeals(foodId) {
+	  $('#breakfast-table', '#lunch-table', '#dinner-table', '#snack-table').html('');
+	  fetch('https://vast-retreat-17218.herokuapp.com/api/v1/meals').then(function (response) {
+	    return response.json();
+	  }).then(function (parsedResponse) {
+	    parsedResponse.forEach(function (meal) {
+	      meal.foods.forEach(function (food) {
+	        totalCalCount += food.calories;
+	        $('#' + meal.name.toLowerCase() + '-table').append('\n            <tr class="' + meal.name + '-list-item" id=\'' + food.id + '\'>\n            <td class="' + meal.name + '-name-field" id=\'' + food.id + '\'><p>' + food.name + '</p></td>\n            <td class="' + meal.name + '-calorie-field" id=\'' + food.id + '\'><p>' + food.calories + '</p></td>\n            <td class="delete-food-button"><img src="./public/assets/gradient-x.png" width="30" height="auto" id=\'' + food.id + '\'></td>\n            </tr>\n            ');
+	      });
+	      remainingCals = mealTotalCalories[meal.name.toLowerCase()] - toatsCals(meal);
+	      $('.' + meal.name.toLowerCase() + '-table-calories').append('\n          <tr>\n          <td> Total Calories </td>\n          <td> ' + toatsCals(meal) + ' </td>\n          </tr>\n          <tr>\n          <td> Remaining Calories </td>\n          <td id="' + meal.name.toLowerCase() + '-remaining-calories"> ' + remainingCals + '</td>\n          </tr>\n          ');
+	      colorCals(remainingCals, '#' + meal.name.toLowerCase() + '-remaining-calories');
+	    });
+	    remainingDailyCals = 2000 - totalCalCount;
+	    $("#toats-table").append('\n      <tr id="goal-calories">\n        <td><p>Goal Calories</p></td>\n        <td><p>2000</p></td>\n      </tr>\n      <tr id="consumed-calories">\n        <td><p>Consumed Calories</p></td>\n        <td id="total-consumed-cals"><p>' + totalCalCount + '</p></td>\n      </tr>\n      <tr id="remaining-total-calories">\n        <td><p>Remaining Calories</p></td>\n        <td id="total-remaining-cals"><p>' + remainingDailyCals + '</p></td>\n      </tr>\n      ');
+	    colorCals(remainingDailyCals, "#total-consumed-cals");
+	    colorCals(remainingDailyCals, "#total-remaining-cals");
+	  });
+	};
+
+	var colorCals = function colorCals(calories, cssElement) {
+	  if (calories < 0) {
+	    $(cssElement).css('color', 'red');
+	  } else {
+	    $(cssElement).css('color', 'green');
+	  }
+	};
+
+	var toatsCals = function toatsCals(meal) {
+	  var total = meal.foods.reduce(function (sum, food) {
+	    return sum += food.calories;
+	  }, 0);
+	  return total;
+	};
+
+	var getFoodList = function getFoodList() {
+	  $('#food-list-meals').html('');
+	  fetch('https://vast-retreat-17218.herokuapp.com/api/v1/foods').then(function (response) {
+	    return response.json();
+	  }).then(function (myJson) {
+	    myJson.sort(orderById).forEach(function (obj) {
+	      $('#food-list-meals').append('\n      <tr class="food-list-item" id=\'' + obj.id + '\'>\n        <td><input type="checkbox" name=\'' + obj.id + '\'></td>\n        <td class="food-name-field" id=\'' + obj.id + '\'><p>' + obj.name + '</p></td>\n        <td class="food-calorie-field" id=\'' + obj.id + '\'><p>' + obj.calories + '</p></td>\n      </tr>\n      ');
+	    });
+	  });
+	};
+
+	$("#new-food-btn").click(function (event) {
+	  event.preventDefault();
+	  window.location = "/foods.html";
+	});
+
+	// vvv Duplicate event listener from foods.html vvv
+	$('#food-filter').on('keyup', function (event) {
+	  var input = event.currentTarget.value.toUpperCase();
+	  var i = input.length;
+	  var listItems = Array.from($("#food-list").find("tr"));
+
+	  listItems.forEach(function (item) {
+	    if (item.firstElementChild.textContent.toUpperCase().substr(0, i) != input) {
+	      item.style.display = 'none';
+	    } else {
+	      item.style.display = '';
+	    }
+	  });
+	});
+
+	var orderById = function orderById(a, b) {
+	  if (a.id < b.id) return -1;
+	  if (a.id > b.id) return 1;
+	  return 0;
+	};
+
+	var mealTotalCalories = {
+	  snack: 200,
+	  breakfast: 400,
+	  lunch: 600,
+	  dinner: 800
+	};
+
+	findFoodFromMeals();
 	getFoodList();
 
 /***/ })
