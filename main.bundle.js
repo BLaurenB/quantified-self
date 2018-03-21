@@ -64,7 +64,7 @@
 	    return response.json();
 	  }).then(function (myJson) {
 	    myJson.sort(orderById).forEach(function (obj) {
-	      $('#food-list').append('\n      <tr class="food-list-item" id=\'' + obj.id + '\'>\n        <td class="food-name-field" id=\'' + obj.id + '\'><p>' + obj.name + '</p></td>\n        <td class="food-calorie-field" id=\'' + obj.id + '\'><p>' + obj.calories + '</p></td>\n        <td class="delete-food-button"><img src="./public/assets/gradient-x.png" width="30" height="auto" id=\'' + obj.id + '\'></td>\n      </tr>\n      ');
+	      $('#food-list').append('\n      <tr class="food-list-item" id=\'' + obj.id + '\'>\n        <td class="food-name-field" id=\'' + obj.id + '\'><p>' + obj.name + '</p></td>\n        <td class="food-calories-field" id=\'' + obj.id + '\'><p>' + obj.calories + '</p></td>\n        <td class="delete-food-button"><img src="./public/assets/gradient-x.png" width="30" height="auto" id=\'' + obj.id + '\'></td>\n      </tr>\n      ');
 	    });
 	  });
 	};
@@ -94,9 +94,9 @@
 	  });
 	});
 
-	$('#food-list').on('click', '.food-calorie-field', function (event) {
-	  var tableCell = $('<td class=\'.food-calorie-field\' id=\'' + event.currentTarget.id + '\'><input type="text" name="food-calorie" value="' + event.target.textContent + '"\n  id="food-calorie-edit" required ></td>');
-	  $('td#' + event.currentTarget.id + '.food-calorie-field').html(tableCell);
+	$('#food-list').on('click', '.food-calories-field', function (event) {
+	  var tableCell = $('<td class=\'.food-calories-field\' id=\'' + event.currentTarget.id + '\'><input type="text" name="food-calorie" value="' + event.target.textContent + '"\n  id="food-calorie-edit" required ></td>');
+	  $('td#' + event.currentTarget.id + '.food-calories-field').html(tableCell);
 	  $('#food-list').find('#food-calorie-edit').focus();
 	  $('#food-calorie-edit').on('focusout', function (exitEvent) {
 	    var calories = $('#food-calorie-edit').val();
@@ -277,7 +277,7 @@
 	    return response.json();
 	  }).then(function (myJson) {
 	    myJson.sort(orderById).forEach(function (obj) {
-	      $('#food-list-meals').append('\n      <tr class="food-list-item" id=\'' + obj.id + '\'>\n        <td><input type="checkbox" name=\'' + obj.id + '\'></td>\n        <td class="food-name-field" id=\'' + obj.id + '\'><p>' + obj.name + '</p></td>\n        <td class="food-calorie-field" id=\'' + obj.id + '\'><p>' + obj.calories + '</p></td>\n      </tr>\n      ');
+	      $('#food-list-meals').append('\n      <tr class="food-list-item" id=\'' + obj.id + '\'>\n        <td><input type="checkbox" name=\'' + obj.id + '\'></td>\n        <td class="food-name-field" id=\'' + obj.id + '\'><p>' + obj.name + '</p></td>\n        <td class="food-calories-field" id=\'' + obj.id + '\'><p>' + obj.calories + '</p></td>\n      </tr>\n      ');
 	    });
 	  });
 	};
