@@ -7,12 +7,13 @@
 <body>
   <!-- <h1>Tis a Food Page!  Marker<h1> -->
     <!--Nav Bar-->
-    <div>
-      <!-- Link to Meals -->
+    <div id='nav-bar-foods'>
       <div>
+        <td class="nav-bar-btn"><img src="./public/assets/green-arrow_quantified.png" width="50" height="auto" id='go-to-index-btn' alt='Go to index'></td>
+        <div id="to-diary-txt">To Diary</div>
       </div>
     </div>
-    
+
     <!--Main Content-->
     <div>
       <!-- Food Container-->
@@ -35,14 +36,19 @@
         <br>
         <!-- Food List -->
         <h2>Your Foods</h2>
-        <input type="text" id="food-filter" placeholder="Search for Foods">
+        <input type="text" id="food-filter" placeholder="Search for Foods"><br><br>
         <div>
-          <table id="food-list">
-            <tr>
-              <th>Name</th>
-              <th>Calories</th>
-              <th></th>
-            </tr>
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Calories</th>
+                <th></th>
+              </tr>
+          </thead>
+          <tbody id="food-list">
+
+          </tbody>
           </table>
         </div>
       </div>

@@ -7,18 +7,17 @@
 </head>
 
 <body>
-  <h1>Tis a Meal Page!</h1>
-  <!--Nav Bar-->
-  <div>
-    <!-- Link to Foods -->
+  <div id='nav-bar-index'>
     <div>
+      <td class="nav-bar-btn"><img src="./public/assets/green-arrow_quantified_to_foods.png" width="50" height="auto" id='go-to-foods-btn' alt='Go to foods'></td>
+      <div id="to-foods-txt">To Foods</div>
     </div>
   </div>
 
 
   <!--Main Content-->
-  <div>
-    <div id="meal-table-collection">Diary (L-Side)
+  <div id='meal-foods-container'>
+    <div id="meal-table-collection">
       <div> <h3>Breakfast</h3>
         <table class="meal-table">
           <thead>
@@ -98,30 +97,32 @@
     <br>
     <br>
     <br>
-    <div><h2>Foods</h2>
+    <div id="food-main-page-container"><h2>Foods</h2>
       <div class="add-to-meal-btns">
 
-      <div id="breakfast-btn-container">
-        <button type="button" class="add-to-meal-btn" id='1'>Add to Breakfast</button>
-      </div><br>
-      <div id="lunch-btn-container">
-        <button type="button" class="add-to-meal-btn" id='3'>Add to Lunch</button>
-      </div><br>
-      <div id="dinner-btn-container">
-        <button type="button" class="add-to-meal-btn" id='4'>Add to Dinner</button>
-      </div><br>
-      <div id="snack-btn-container">
-        <button type="button" class="add-to-meal-btn" id='2'>Add to Snacks</button>
-      </div><br>
-    </div>
-
-      <div class="link-to-foods">
-        <button type="button" id="new-food-btn">Create New Food</button>
-      </div><br>
-
-      <div class="food-filter-container">
-        <input type="text" id="food-filter" placeholder="Search for Foods">
+        <div id="breakfast-btn-container">
+          <button type="button" class="add-to-meal-btn" id='1'>Add to Breakfast</button>
+        </div><br>
+        <div id="lunch-btn-container">
+          <button type="button" class="add-to-meal-btn" id='3'>Add to Lunch</button>
+        </div><br>
+        <div id="dinner-btn-container">
+          <button type="button" class="add-to-meal-btn" id='4'>Add to Dinner</button>
+        </div><br>
+        <div id="snack-btn-container">
+          <button type="button" class="add-to-meal-btn" id='2'>Add to Snacks</button>
+        </div><br><br><br>
       </div>
+
+      <div class="link-and-filter-container">
+        <div class="link-to-foods">
+          <button type="button" id="new-food-btn">Create New Food</button>
+        </div><br>
+
+        <div class="food-filter-container">
+          <input type="text" id="food-filter" placeholder="Search for Foods">
+        </div><br>
+      </div> <br><br>
 
       <div class="food-table">
         <div>
