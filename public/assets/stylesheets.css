@@ -2,8 +2,26 @@
 *= require main
 */
 
+
+body {
+font-family: "Aldrich", sans-serif;}
+
 table {
   border: 1px black solid;
+  border-collapse: collapse;
+}
+td {
+  padding: 0px 30px;
+}
+tfoot {
+  font-weight: bolder;
+}
+
+table thead tr {
+  background-color:#ffdb11;
+}
+table tfoot tr {
+  background-color:#ffdb1149;
 }
 
 #meal-foods-container {
@@ -48,4 +66,53 @@ table {
 #nav-bar-foods {
   display: flex;
   justify-content: flex-end;
+}
+
+button {
+  border-radius: 15px;
+  font-family: ‘Josefin Sans’, sans-serif;
+  font-size: 13px;
+}
+.add-to-meal-btn-breakfast {
+  padding: 5px 7px;
+  background-color: #ede597;
+  margin: 8px 0px;
+  width: 105px;
+}
+
+.add-to-meal-btn-lunch {
+  padding: 5px 7px;
+  background-color: #89C1AF;
+  margin: 8px 0px;
+  width: 105px;
+}
+
+.add-to-meal-btn-dinner {
+  padding: 5px 7px;
+  background-color: #80B3DD;
+  margin: 8px 0px;
+  width: 105px;
+}
+
+.add-to-meal-btn-snack {
+  padding: 5px 7px;
+  background-color: #E1BC29;
+  margin: 8px 0px;
+  width: 105px;
+}
+
+.add-to-meal-btn-breakfast:hover {
+  background-color: #FFF7A5;
+}
+
+.add-to-meal-btn-lunch:hover {
+ background-color: #a8ddcc;
+}
+
+.add-to-meal-btn-dinner:hover {
+ background-color: #96cfff;
+}
+
+.add-to-meal-btn-snack:hover {
+  background-color: #ffd942;
 }

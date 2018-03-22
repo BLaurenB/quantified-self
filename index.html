@@ -4,12 +4,14 @@
 <head>
   <meta charset="utf-8">
   <title>Quantified Self - Diary</title>
+<link href=“https://fonts.googleapis.com/css?family=Aldrich” rel=“stylesheet”>
+
 </head>
 
 <body>
   <div id='nav-bar-index'>
     <div>
-      <td class="nav-bar-btn"><img src="./public/assets/green-arrow_quantified_to_foods.png" width="50" height="auto" id='go-to-foods-btn' alt='Go to foods'></td>
+      <td class="nav-bar-btn"><a href="../foods.html"><img src="./public/assets/green-arrow_quantified_to_foods.png" width="50" height="auto" id='go-to-foods-btn' alt='Go to foods'></a></td>
       <div id="to-foods-txt">To Foods</div>
     </div>
   </div>
@@ -81,13 +83,7 @@
       <div>
         <h3>Totals</h3>
         <table class="meal-table" id="toats-table">
-          <thead>
-            <tr>
-              <th></th>
-              <th></th>
-              <th></th>
-            </tr>
-          </thead>
+          
         </table>
       </div>
 
@@ -101,16 +97,16 @@
       <div class="add-to-meal-btns">
 
         <div id="breakfast-btn-container">
-          <button type="button" class="add-to-meal-btn" id='1'>Add to Breakfast</button>
+          <button type="button" class="add-to-meal-btn-breakfast" id='1'>Add to Breakfast</button>
         </div><br>
         <div id="lunch-btn-container">
-          <button type="button" class="add-to-meal-btn" id='3'>Add to Lunch</button>
+          <button type="button" class="add-to-meal-btn-lunch" id='3'>Add to Lunch</button>
         </div><br>
         <div id="dinner-btn-container">
-          <button type="button" class="add-to-meal-btn" id='4'>Add to Dinner</button>
+          <button type="button" class="add-to-meal-btn-dinner" id='4'>Add to Dinner</button>
         </div><br>
         <div id="snack-btn-container">
-          <button type="button" class="add-to-meal-btn" id='2'>Add to Snacks</button>
+          <button type="button" class="add-to-meal-btn-snack" id='2'>Add to Snacks</button>
         </div><br><br><br>
       </div>
 
@@ -131,7 +127,8 @@
               <tr>
                 <th></th>
                 <th>Name</th>
-                <th id="calories-header">Calories</th>
+                <th id="calories-header">Calories</th>  
+                <th></th>
               </tr>
             </thead>
             <tbody id="food-list-meals">
