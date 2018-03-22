@@ -2,9 +2,11 @@
 *= require main
 */
 
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans');
 
 body {
-font-family: "Aldrich", sans-serif;}
+  font-family: 'Josefin Sans', sans-serif;
+}
 
 table {
   border: 1px black solid;
@@ -70,7 +72,7 @@ table tfoot tr {
 
 button {
   border-radius: 15px;
-  font-family: ‘Josefin Sans’, sans-serif;
+  font-family: 'Josefin Sans', sans-serif;
   font-size: 13px;
 }
 .add-to-meal-btn-breakfast {
