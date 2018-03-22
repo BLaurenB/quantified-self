@@ -17,6 +17,7 @@ td {
 }
 tfoot {
   font-weight: bolder;
+  line-height: 30px
 }
 
 table thead tr {
@@ -117,4 +118,18 @@ button {
 
 .add-to-meal-btn-snack:hover {
   background-color: #ffd942;
+}
+
+
+#nav-bar-foods {
+  margin-top: 1%;
+  margin-right: 3%;
+}
+#nav-bar-index {
+  margin-top: 1%;
+  margin-left: 3%;
+}
+
+.main-food-container {
+  margin-left: 10%;
 }
