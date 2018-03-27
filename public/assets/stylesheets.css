@@ -81,6 +81,7 @@ button {
   background-color: #ede597;
   margin: 8px 0px;
   width: 105px;
+  font-weight:
 }
 
 .add-to-meal-btn-lunch {
@@ -119,7 +120,6 @@ button {
 .add-to-meal-btn-snack:hover {
   background-color: #ffd942;
 }
-
 
 #nav-bar-foods {
   margin-top: 1%;
