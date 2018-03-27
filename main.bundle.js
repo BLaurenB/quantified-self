@@ -60,7 +60,7 @@
 
 	var getFoodList = function getFoodList() {
 	  $('#food-list').html('');
-	  fetch('https://vast-retreat-17218.herokuapp.com/api/v1/foods').then(function (response) {
+	  fetch('https://qs-backend-express.herokuapp.com/api/v1/foods').then(function (response) {
 	    return response.json();
 	  }).then(function (myJson) {
 	    myJson.sort(orderById).forEach(function (obj) {
@@ -107,7 +107,7 @@
 	});
 
 	function deleteFood(id) {
-	  return fetch('https://vast-retreat-17218.herokuapp.com/api/v1/foods/' + id, {
+	  return fetch('https://qs-backend-express.herokuapp.com/api/v1/foods/' + id, {
 	    method: 'DELETE'
 	  }).catch(function (error) {
 	    return console.error({ error: error });
@@ -115,7 +115,7 @@
 	}
 
 	var findFoodsInMeals = function findFoodsInMeals(foodId) {
-	  fetch('https://vast-retreat-17218.herokuapp.com/api/v1/meals').then(function (response) {
+	  fetch('https://qs-backend-express.herokuapp.com/api/v1/meals').then(function (response) {
 	    return response.json();
 	  }).then(function (parsedResponse) {
 	    parsedResponse.forEach(function (element) {
@@ -130,7 +130,7 @@
 	};
 
 	var deleteFoodFromMeals = function deleteFoodFromMeals(mealID, foodId) {
-	  fetch('https://vast-retreat-17218.herokuapp.com/api/v1/meals/' + mealID + '/foods/' + foodId, { method: 'DELETE' }).catch(function (error) {
+	  fetch('https://qs-backend-express.herokuapp.com/api/v1/meals/' + mealID + '/foods/' + foodId, { method: 'DELETE' }).catch(function (error) {
 	    return console.error({ error: error });
 	  });
 	};
@@ -145,11 +145,11 @@
 	});
 
 	var postNewFood = function postNewFood(foodInfo) {
-	  fetch("https://vast-retreat-17218.herokuapp.com/api/v1/foods", postConfig(foodInfo)).then(processResponse).then(getFoodList).catch(errorLog);
+	  fetch("https://qs-backend-express.herokuapp.com/api/v1/foods", postConfig(foodInfo)).then(processResponse).then(getFoodList).catch(errorLog);
 	};
 
 	var updateExistingFood = function updateExistingFood(foodInfo, foodId) {
-	  fetch('https://vast-retreat-17218.herokuapp.com/api/v1/foods/' + foodId, updateConfig(foodInfo)).then(processResponse).then(getFoodList).catch(errorLog);
+	  fetch('https://qs-backend-express.herokuapp.com/api/v1/foods/' + foodId, updateConfig(foodInfo)).then(processResponse).then(getFoodList).catch(errorLog);
 	};
 
 	var updateConfig = function updateConfig(foodInfo) {
@@ -237,7 +237,7 @@
 
 	var populateFoodFromMeals = function populateFoodFromMeals(foodId) {
 	  $('#breakfast-table', '#lunch-table', '#dinner-table', '#snack-table').html('');
-	  fetch('https://vast-retreat-17218.herokuapp.com/api/v1/meals').then(function (response) {
+	  fetch('https://qs-backend-express.herokuapp.com/api/v1/meals').then(function (response) {
 	    return response.json();
 	  }).then(function (parsedResponse) {
 	    parsedResponse.forEach(function (meal) {
@@ -273,7 +273,7 @@
 
 	var getFoodList = function getFoodList() {
 	  $('#food-list-meals').html('');
-	  fetch('https://vast-retreat-17218.herokuapp.com/api/v1/foods').then(function (response) {
+	  fetch('https://qs-backend-express.herokuapp.com/api/v1/foods').then(function (response) {
 	    return response.json();
 	  }).then(function (myJson) {
 	    myJson.sort(orderById).forEach(function (obj) {
