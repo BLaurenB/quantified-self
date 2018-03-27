@@ -58,9 +58,9 @@
 
 	var loadFunctionsByPage = function loadFunctionsByPage() {
 	  var page = window.location.pathname;
-	  if (page === "/foods.html") {
+	  if (page === "/quantified-self/foods.html") {
 	    (0, _fetchFoods.getFoodList)();
-	  } else if (page === "/index.html" || page === "/") {
+	  } else if (page === "/quantified-self/index.html" || page === "quantified-self/") {
 	    (0, _fetchMeals.populateFoodFromMeals)();
 	    (0, _fetchMeals.getFoodListMeal)();
 	  }
