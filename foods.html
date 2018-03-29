@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang=en role='main'>
 <head>
   <meta charset="utf-8">
   <title>Quantified Self - Manage Foods</title>
@@ -20,15 +20,20 @@
       <!-- Food Container-->
       <div class="main-food-container">
         <!-- New Food -->
-        <h2>Add Foods</h2>
+        <h1>Add Foods</h1>
         <div>
           <form id="new-food-form">
+            <label for="food-name-field">
             Food Name: <input type="text" name="food-name" id="food-name-field"
             required oninvalid="this.setCustomValidity('Please enter a food name')"
             oninput="setCustomValidity('')"><br><br>
+            </label>
+            <label for="calories-field">
             Calories: <input type="text" name="calories" id="calories-field"
             required oninvalid="this.setCustomValidity('Please enter a calorie amount')"
             oninput="setCustomValidity('')"><br><br>
+            </label>
+            <label for="Add Food"></label>
             <input type="submit" value="Add Food">
           </form>
         </div>
@@ -37,7 +42,10 @@
         <br>
         <!-- Food List -->
         <h2>Your Foods</h2>
-        <input type="text" id="food-filter" placeholder="Search for Foods"><br><br>
+        <label for='foods-filter'> Search
+          <input title="Search for Foods" type="text" id="food-filter" placeholder="for Foods">
+        </label>
+        <br><br>
         <div>
           <table>
             <thead>
