@@ -8,6 +8,8 @@ Quantified Self is a calorie tracker that allows the user to add, edit, and remo
 
 ## The Back End
  Data is called from and saved to a back end hosted at: https://qs-backend-express.herokuapp.com/api/v1/meals
+ The API was created from scratch in Express to mimic an existing Rails Back End. See repo for more:
+ https://github.com/abarnes26/quantified-self-express-backend
 
 
 ## Project Development and Highlights
