@@ -2,8 +2,7 @@
 
 This project is based on the following assignment from Turing School of Software and Design:
 https://backend.turing.io/module4/projects/quantified-self/quantified-self
-
-The starter repo contained some files which were mostly empty. HTML files had empty <body> elements, and .js files were empty.
+(The starter repo contained some files which were mostly empty. HTML files had empty <body> elements, and .js files were empty.)
 
  This project is a calorie tracker that allows the user to add, edit, and remove foods from the /foods.html page, and add foods to a meal on the /meal.html page.
 
@@ -27,7 +26,48 @@ HTML has a limited structure; the majority of page elements are created as a res
 #### AXE Accessibility
 * HTML and CSS contain no accessibility violations
 
+
 ## Fork and Run this repo 
+Start by forking and cloning this repo, then cd into the project directory.
+
+### Set up and View via GitHub Pages 
+In your terminal, run the following:
+* `npm install` to install dependencies
+* `npm run build` to create your main.bundle.js file
+* `git push origin master` to push to your repo's master. 
+* navigate to your repo's Settings Tab and scroll down to GitHubPages. Set your source as the master branch and save. This will load the pages via GitHub
+
+### Run in development
+To run this app locally, you will need to update any occurance of window.path in the project. Remove "quanitified-self" from the path name, but remember that you'll need to change it back when running in production.
+
+In your terminal, run the following:
+* `npm start` to start the development server
+* navigate to http://localhost:8080 to checkout your nifty local version!
+
+
+# Credits
+
+## Front End Built With
+
+* [Javascript](https://www.javascript.com/) 
+* [jQuery](https://jquery.com/) 
+* HTML5 and CSS
+
+
+
+## Authors
+
+* **Alex Barnes** [contact](https://github.com/abarnes26)
+* **Lauren Billington** [contact](https://github.com/blaurenb)
+
+
+## License
+
+This project is licensed under the MIT License 
+
+
+
+
 
 
 
