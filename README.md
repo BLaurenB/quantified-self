@@ -4,7 +4,7 @@ This project is based on the following assignment from Turing School of Software
 https://backend.turing.io/module4/projects/quantified-self/quantified-self
 (The starter repo contained some files which were mostly empty. HTML files had empty <body> elements, and .js files were empty.)
 
- This project is a calorie tracker that allows the user to add, edit, and remove foods from the /foods.html page, and add foods to a meal on the /meal.html page.
+Quantified Self is a calorie tracker that allows the user to add, edit, and remove foods from the /foods.html page, and add foods to a meal on the /meal.html page.
 
 ## The Back End
  Data is called from and saved to a back end hosted at: https://qs-backend-express.herokuapp.com/api/v1/meals
