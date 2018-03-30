@@ -60,7 +60,7 @@
 	  var page = window.location.pathname;
 	  if (page === "/quantified-self/foods.html") {
 	    (0, _fetchFoods.getFoodList)();
-	  } else if (page === "/quantified-self/index.html" || page === "quantified-self/") {
+	  } else if (page === "/quantified-self/index.html" || page === "/quantified-self/") {
 	    (0, _fetchMeals.populateFoodFromMeals)();
 	    (0, _fetchMeals.getFoodListMeal)();
 	  }
