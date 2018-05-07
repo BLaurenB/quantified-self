@@ -4,8 +4,7 @@ Quantified Self is a calorie tracker that allows the user to add, edit, and remo
 
 
 ## Front End Development and Highlights
-Please visit the [interactive version] (https://blaurenb.github.io/quantified-self/)
-[contact](https://github.com/abarnes26)
+Please visit the [interactive version](https://blaurenb.github.io/quantified-self/)
 
 HTML has a limited structure; the majority of page elements are created as a result of fetch calls and which are used to append data and structure to the DOM without reloading the page.
 
@@ -69,21 +68,4 @@ https://backend.turing.io/module4/projects/quantified-self/quantified-self
 
 ## License
 
-This project is licensed under the MIT License 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.
+This project is licensed under the MIT License.
