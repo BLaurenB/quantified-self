@@ -1,19 +1,11 @@
-# Quantified-Self: The Front End
-
-This project is based on the following assignment from Turing School of Software and Design:
-https://backend.turing.io/module4/projects/quantified-self/quantified-self
-(The starter repo contained some files which were mostly empty. HTML files had empty <body> elements, and .js files were empty.)
+# Quantified-Self
 
 Quantified Self is a calorie tracker that allows the user to add, edit, and remove foods from the /foods.html page, and add foods to a meal on the /meal.html page.
 
-## The Back End
- Data is called from and saved to a back end hosted at: https://qs-backend-express.herokuapp.com/api/v1/meals
- 
- The API was created from scratch in Express to mimic an existing Rails Back End. See repo for more:
- https://github.com/abarnes26/quantified-self-express-backend
 
+## Front End Development and Highlights
+Please visit the [interactive version] (https://blaurenb.github.io/quantified-self/)
 
-## Project Development and Highlights
 HTML has a limited structure; the majority of page elements are created as a result of fetch calls and which are used to append data and structure to the DOM without reloading the page.
 
 #### Foods.html
@@ -29,6 +21,12 @@ HTML has a limited structure; the majority of page elements are created as a res
 #### AXE Accessibility
 * HTML and CSS contain no accessibility violations
 
+
+## The Back End
+ Data is called from and saved to a back end hosted at: https://qs-backend-express.herokuapp.com/api/v1/meals
+ 
+ The API was created from scratch in Express to mimic an existing Rails Back End. 
+ See repo for more: [BackEnd](https://github.com/abarnes26/quantified-self-express-backend)
 
 ## Fork and Run this repo 
 Start by forking and cloning this repo, then cd into the project directory.
@@ -57,11 +55,15 @@ In your terminal, run the following:
 * HTML5 and CSS
 
 
-
 ## Authors
 
 * **Alex Barnes** [contact](https://github.com/abarnes26)
 * **Lauren Billington** [contact](https://github.com/blaurenb)
+
+## Original Assignment Details
+This project is based on the following assignment from Turing School of Software and Design:
+
+https://backend.turing.io/module4/projects/quantified-self/quantified-self
 
 
 ## License
